@@ -4,6 +4,7 @@ import { faAddressBook } from "@fortawesome/free-solid-svg-icons";
 import Menu from "./Menu";
 import ContactList from "./ContactList";
 import ContactDetails from "./ContactDetails";
+import ContactForm from "./ContactForm";
 
 export interface Contact {
     id: number;
@@ -36,6 +37,13 @@ const Dashboard = () => {
     const handleContactSelect = (contact: Contact) => setSelectedContact(contact);
     const handleBackToList = () => setSelectedContact(null);
 
+    const renderView = () => {
+        switch (currentView) {
+            case 1: return <ContactList contacts={contacts} onContactSelect={handleContactSelect} />
+            case 2: return <ContactForm onContactUpdate={(updatedContacts) => setContacts(updatedContacts)} setCurrentView={setCurrentView} />
+        }
+    }
+
     return (
         <div className="dashboard-container">
             <div className="dashboard-header">
@@ -46,11 +54,11 @@ const Dashboard = () => {
             </div>
             <div className="dashboard-content">
                 <Menu currentView={currentView} setCurrentView={setCurrentView} />
-                // TODO: Implement logic to render form or contact list.
+         
                 { selectedContact ? (
                     <ContactDetails contact={selectedContact} onBack={handleBackToList} />
                 ) : (
-                    <ContactList contacts={contacts} onContactSelect={handleContactSelect} />
+                    renderView()
                 )}
             </div>
         </div>
