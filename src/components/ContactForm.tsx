@@ -1,6 +1,5 @@
 
 import React, { useState } from "react"
-import { Contact } from "./Dashboard"
 
 interface ContactFormProps {
     onContactUpdate: (updatedContacts) => void

@@ -44,6 +44,11 @@ const Dashboard = () => {
         }
     }
 
+    const handleDeleteContact = (id: number) => {
+        setContacts((prevContacts) => prevContacts.filter((contact) => contact.id !== id));
+        setSelectedContact(null)
+    }
+
     return (
         <div className="dashboard-container">
             <div className="dashboard-header">
@@ -56,7 +61,7 @@ const Dashboard = () => {
                 <Menu currentView={currentView} setCurrentView={setCurrentView} />
          
                 { selectedContact ? (
-                    <ContactDetails contact={selectedContact} onBack={handleBackToList} />
+                    <ContactDetails contact={selectedContact} onBack={handleBackToList} onDelete={handleDeleteContact} />
                 ) : (
                     renderView()
                 )}
