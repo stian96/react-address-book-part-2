@@ -18,6 +18,7 @@ export interface Contact {
   }
 
 const Dashboard = () => {
+    
     const [contacts, setContacts] = useState<Contact[]>([]);
     const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
     const [currentView, setCurrentView] = useState<number>(1);
